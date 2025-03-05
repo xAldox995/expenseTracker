@@ -1,24 +1,14 @@
 package marco_aldo_project.expenseTracker.entities;
-
-import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import java.time.LocalDateTime;
-import java.util.UUID;
-@Entity
-@Table(name = "transazioni")
-@Getter
-@Setter
+
+
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Transazione {
-    @Id
-    @GeneratedValue
-    @Setter(AccessLevel.NONE)
-    private UUID id;
+
     private double importo;
     private String decrizione;
-    @Column(name = "data_transazione")
     private LocalDateTime dataTransazione;
 
     public Transazione(double importo, String decrizione) {
