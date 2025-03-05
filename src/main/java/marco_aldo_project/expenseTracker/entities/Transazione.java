@@ -1,6 +1,5 @@
 package marco_aldo_project.expenseTracker.entities;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,13 +16,17 @@ public abstract class Transazione {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "id_conto")
+    private Conto conto;
     private double importo;
     private String decrizione;
     private LocalDateTime dataTransazione;
 
-    public Transazione(double importo, String decrizione) {
+    public Transazione(double importo, String decrizione, Conto conto) {
         this.importo = importo;
         this.decrizione = decrizione;
+        this.conto = conto;
         this.dataTransazione = LocalDateTime.now();
     }
 }
