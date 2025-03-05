@@ -28,22 +28,22 @@ public class Users {
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID id;
-    private String email;
-    private String password;
-    @Enumerated(EnumType.STRING)
-    private Ruolo ruolo;
     private String nome;
     private String cognome;
+    private String email;
+    private String password;
+    private String avatar;
+    @Enumerated(EnumType.STRING)
+    private Ruolo ruolo;
     @OneToOne
     @JoinColumn(name = "conto_id")
     private Conto conto;
 
-    public Users(String email, String password, Ruolo ruolo, String nome, String cognome, Conto conto) {
-        this.email = email;
-        this.password = password;
-        this.ruolo = ruolo;
+    public Users(String nome, String cognome, String email, String password, String avatar) {
         this.nome = nome;
         this.cognome = cognome;
-        this.conto = conto;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
     }
 }
